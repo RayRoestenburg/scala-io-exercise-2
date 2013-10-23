@@ -1,4 +1,4 @@
-package com.xebia.exercise1
+package com.xebia.exercise2
 
 import akka.actor.{Props, ActorSystem}
 import akka.io.IO

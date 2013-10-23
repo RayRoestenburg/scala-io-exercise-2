@@ -1,4 +1,4 @@
-package com.xebia.exercise1
+package com.xebia.exercise2
 
 import org.specs2.mutable.Specification
 import TestSupport._
