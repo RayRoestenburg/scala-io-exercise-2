@@ -6,13 +6,14 @@ import spray.httpx.SprayJsonSupport._
 import scala.concurrent.ExecutionContext
 import akka.actor.{Props, ActorRef}
 import akka.util.Timeout
-import com.xebia.exercise2.ReverseActor._
 
-class Receptionist extends HttpServiceActor with ReverseRoute {
+//TODO change class to trait
+//TODO mixin the CreationSupport trait
+trait Receptionist extends HttpServiceActor
+                      with ReverseRoute
+                      with CreationSupport {
 
   import ReverseActor._
-
-  def createChild(props:Props, name:String) = context.actorOf(props, name)
 
   def receive = runRoute(reverseRoute)
 
@@ -36,9 +37,13 @@ trait ReverseRoute extends HttpService {
 
         import ReverseActor._
 
+        //TODO based on the result (ReverseResult or PalindromeResult)
+        // complete with a ReverseResponse that indicates isPalindrome
         val futureResponse = reverseActor.ask(Reverse(request.value))
-                                         .mapTo[ReverseResult]
-                                         .map(result=> ReverseResponse(result.value))
+                                         .map {
+                                           case PalindromeResult => ReverseResponse(request.value, true)
+                                           case ReverseResult(value) => ReverseResponse(value, false)
+                                         }
 
         complete(futureResponse)
       }
