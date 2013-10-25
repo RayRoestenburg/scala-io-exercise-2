@@ -17,12 +17,7 @@ class ReceptionistSpec extends Specification with Specs2RouteTest {
   //TODO extend with TestCreationSupport and remove createChild implementation here
   val subject = new ReverseRoute {
     implicit def actorRefFactory: ActorRefFactory = system
-
-    // TODO this creates the ReverseActor as a sibling.
-    // The Receptionist communicates with the ReverseActor and this is not what we want
-    // for a unit test. Create a TestCreationSupport that extends from CreationSupport
-    // and that creates an ActorRef to a (mock) FakeReverseActor.
-    def createChild(props:Props, name:String) : ActorRef = system.actorOf(props, name)
+    implicit def executionContext = system.dispatcher
   }
 
   "The Receptionist" should {
