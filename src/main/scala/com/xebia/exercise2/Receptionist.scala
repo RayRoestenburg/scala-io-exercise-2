@@ -11,7 +11,7 @@ import spray.httpx.SprayJsonSupport._
 
 trait Receptionist extends HttpServiceActor
                       with ReverseRoute
-                      with CreationSupport {
+                      with ActorContextCreationSupport {
   implicit def executionContext:ExecutionContext = context.dispatcher
 
   import ReverseActor._
@@ -20,11 +20,10 @@ trait Receptionist extends HttpServiceActor
 }
 
 
-trait ReverseRoute extends HttpService {
+trait ReverseRoute extends HttpService
+                      with CreationSupport {
 
   implicit def executionContext:ExecutionContext
-
-  def createChild(props:Props, name:String):ActorRef
 
   import ReverseActor._
   private val reverseActor = createChild(props, name)

@@ -8,12 +8,9 @@ import spray.can.Http.Bind
 
 object Main extends App {
 
-  implicit val system = ActorSystem("exercise-1")
+  implicit val system = ActorSystem("exercise-2")
 
-  //TODO create a TheReceptionist class that extends the Receptionist trait with the ActorContextCreationSupport
-  class TheReceptionist extends Receptionist with ActorContextCreationSupport
-
-  val receptionist = system.actorOf(Props[TheReceptionist], "receptionist")
+  val receptionist = system.actorOf(Props[Receptionist], "receptionist")
 
   IO(Http) ! Bind(listener= receptionist, interface = "0.0.0.0", port=8000)
 }
