@@ -9,7 +9,7 @@ import spray.can.Http.Bind
 
 object Main extends App {
 
-  implicit val system = ActorSystem("exercise-1")
+  implicit val system = ActorSystem("exercise-2")
 
   val receptionist = system.actorOf(Props[Receptionist], "receptionist")
 
