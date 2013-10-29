@@ -1,14 +1,16 @@
-package com.xebia.exercise2
-
-import spray.testkit.Specs2RouteTest
-import org.specs2.mutable.Specification
-
-import spray.http.StatusCodes
-import spray.httpx.SprayJsonSupport._
+package com.xebia
+package exercise2
 
 import akka.actor.{Actor, Props, ActorRef, ActorRefFactory}
 
-class ReceptionistSpec extends Specification with Specs2RouteTest {
+import spray.testkit.Specs2RouteTest
+import spray.http.StatusCodes
+import spray.httpx.SprayJsonSupport._
+
+import org.specs2.mutable.Specification
+
+class ReceptionistSpec extends Specification
+                          with Specs2RouteTest {
 
   trait TestCreationSupport extends CreationSupport {
     def createChild(props: Props, name: String): ActorRef = system.actorOf(Props[FakeReverseActor], "fakereverse")
@@ -18,12 +20,7 @@ class ReceptionistSpec extends Specification with Specs2RouteTest {
 
   val subject = new ReverseRoute with TestCreationSupport {
     implicit def actorRefFactory: ActorRefFactory = system
-
-    // TODO this creates the ReverseActor as a sibling.
-    // The Receptionist communicates with the ReverseActor and this is not what we want
-    // for a unit test. Create a TestCreationSupport that extends from CreationSupport
-    // and that creates an ActorRef to a (mock) FakeReverseActor.
-    //def createChild(props:Props, name:String) : ActorRef = system.actorOf(props, name)
+    implicit def executionContext = system.dispatcher
   }
 
   "The Receptionist" should {
@@ -47,8 +44,6 @@ class ReceptionistSpec extends Specification with Specs2RouteTest {
   }
 }
 
-//TODO create a FakeReverseActor that only responds to
-// Reverse("akka") and Reverse("some text to reverse") and sends back the expected result for the test
 class FakeReverseActor extends Actor {
   import ReverseActor._
 
