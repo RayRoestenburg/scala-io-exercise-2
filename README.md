@@ -28,4 +28,4 @@ Change the ReverseActor so it returns a **PalindromeResult** or a **ReverseResul
 
 In **Receptionist**, based on the result of the ReverseActor (ReverseResult or PalindromeResult) complete with a ReverseResponse that indicates isPalindrome true or false.
 
-Make the **ReceptionistSpec* work as a unit test with a **FakeReverseActor**. Also make the **ReverseActorSpec** work.
+Make the **ReceptionistSpec** work as a unit test with a **FakeReverseActor**. Also make the **ReverseActorSpec** work.
