@@ -1,4 +1,5 @@
-package com.xebia.exercise2
+package com.xebia
+package exercise2
 
 import akka.actor.{Actor, Props}
 
@@ -19,5 +20,4 @@ class ReverseActor extends Actor {
       //TODO verify if the value is a palindrome, return a PalindromeResult if this is the case,
       sender ! ReverseResult(value.reverse)
   }
-
 }
