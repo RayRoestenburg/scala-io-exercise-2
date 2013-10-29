@@ -5,9 +5,9 @@ In this exercise we continue with the end result of [exercise 1](http://github/R
 
 In the previous exercise we ended up with a **Receptionist** that creates a child **ReverseActor** to do the actual work (String reversal). The **ReceptionistSpec** is more of an integration test than a unit test right now. Both the **Receptionist** and the **ReverseActor** are tested at once.
 
-In this exercise we are going to decouple the **Receptionist** from the **ReverseActor** so that we can use a mock to only test the **Receptionist**. 
+In this exercise we are going to decouple the **Receptionist** from the **ReverseActor** so that we can use a mock to only test the **Receptionist**.
 A **CreationSupport** trait has been added for creating and getting references to child actors.
-The ReverseResponse has an added property, *isPalindrome*. The ReverseActor should now return a **ReverseResult** if it could reverse the string or a **PalindromeResult** case object if the received string value is a palindrome and reversal has no effect. 
+The ReverseResponse has an added property, *isPalindrome*. The ReverseActor should now return a **ReverseResult** if it could reverse the string or a **PalindromeResult** case object if the received string value is a palindrome and reversal has no effect.
 
 ###Objective
 
@@ -20,11 +20,9 @@ The end result of exercise 1 is the starting point of this exercise. Added to th
 
 ###The Exercise
 
-Change **Receptionist** class to trait and mix in the **CreationSupport** trait.
-
 Create an **ActorContextCreationSupport** that extends the existing **CreationSupport** and uses an **ActorContext** to implement the methods.
 
-In the **Main** class, create a **TheReceptionist** class that extends the **Receptionist** trait with the **ActorContextCreationSupport**.
+Change **Receptionist** class to mix in the **ActorContextCreationSupport** trait.
 
 Change the ReverseActor so it returns a **PalindromeResult** or a **ReverseResult**.
 

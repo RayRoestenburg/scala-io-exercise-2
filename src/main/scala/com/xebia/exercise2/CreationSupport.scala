@@ -10,4 +10,4 @@ trait CreationSupport {
   def getOrCreateChild(props:Props, name:String):ActorRef = getChild(name).getOrElse(createChild(props, name))
 }
 
-// TODO create an ActorContextCreationSupport that extends the CreationSupport and uses an ActorContext to implement the three methods
+// TODO create an ActorContextCreationSupport trait that extends the CreationSupport and uses an ActorContext to implement the three methods

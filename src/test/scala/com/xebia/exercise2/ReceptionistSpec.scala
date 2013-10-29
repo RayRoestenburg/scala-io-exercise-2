@@ -9,20 +9,16 @@ import spray.httpx.SprayJsonSupport._
 
 import org.specs2.mutable.Specification
 
-class ReceptionistSpec extends Specification
-                          with Specs2RouteTest {
+class ReceptionistSpec extends Specification with Specs2RouteTest {
 
-  // The Receptionist communicates with the ReverseActor and this is not what we want
-  // for a unit test. Create a TestCreationSupport that extends from CreationSupport
-  // and that creates an ActorRef to a (mock) FakeReverseActor.
   trait TestCreationSupport extends CreationSupport {
     //TODO implement the TestCreationSupport that creates a FakeReverseActor
   }
 
-  //TODO extend with TestCreationSupport
+  //TODO extend with TestCreationSupport and remove createChild implementation here
   val subject = new ReverseRoute {
     implicit def actorRefFactory: ActorRefFactory = system
-
+    implicit def executionContext = system.dispatcher
   }
 
   "The Receptionist" should {
@@ -41,10 +37,10 @@ class ReceptionistSpec extends Specification
         response.value must beEqualTo("akka")
         response.isPalindrome must beTrue
       }
+
     }
   }
 }
-
 
 //TODO create a FakeReverseActor that only responds to
 // Reverse("akka") and Reverse("some text to reverse") and sends back the expected result for the test
