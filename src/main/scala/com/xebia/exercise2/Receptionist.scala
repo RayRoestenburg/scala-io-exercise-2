@@ -3,7 +3,6 @@ package exercise2
 
 import scala.concurrent.ExecutionContext
 
-import akka.actor.{Props, ActorRef}
 import akka.util.Timeout
 
 import spray.routing._

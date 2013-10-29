@@ -14,7 +14,6 @@ class ReceptionistSpec extends Specification
 
   trait TestCreationSupport extends CreationSupport {
     def createChild(props: Props, name: String): ActorRef = system.actorOf(Props[FakeReverseActor], "fakereverse")
-
     def getChild(name: String): Option[ActorRef] = None
   }
 
@@ -39,7 +38,6 @@ class ReceptionistSpec extends Specification
         response.value must beEqualTo("akka")
         response.isPalindrome must beTrue
       }
-
     }
   }
 }
