@@ -29,3 +29,8 @@ Change the ReverseActor so it returns a **PalindromeResult** or a **ReverseResul
 In **Receptionist**, based on the result of the ReverseActor (ReverseResult or PalindromeResult) complete with a ReverseResponse that indicates isPalindrome true or false.
 
 Make the **ReceptionistSpec** work as a unit test with a **FakeReverseActor**. Also make the **ReverseActorSpec** work.
+
+###Next Exercise
+
+In the next exercise we're going to communicate with an asynchronous library from an Actor. You will learn how to initialize an Actor with *become*.
+Go to [Exercise 3](https://github.com/RayRoestenburg/scala-io-exercise-3)
