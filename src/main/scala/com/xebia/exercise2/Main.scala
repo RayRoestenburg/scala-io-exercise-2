@@ -10,7 +10,7 @@ object Main extends App {
 
   implicit val system = ActorSystem("exercise-2")
 
-  val receptionist = system.actorOf(Props[Receptionist], "receptionist")
+  val receptionist = system.actorOf(Props(new Receptionist), "receptionist")
 
   IO(Http) ! Bind(listener= receptionist, interface = "0.0.0.0", port=8000)
 }
