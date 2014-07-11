@@ -25,6 +25,7 @@ trait ReverseRoute extends HttpService {
   implicit def executionContext: ExecutionContext
 
   import ReverseActor._
+
   private val reverseActor = createChild(props, name)
 
   def reverseRoute:Route = path("reverse") {

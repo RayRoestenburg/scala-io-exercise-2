@@ -4,7 +4,7 @@ package exercise2
 import akka.actor.{Actor, Props}
 
 object ReverseActor {
-  def props = Props[ReverseActor]
+  def props = Props(new ReverseActor)
   def name = "reverser"
 
   case class Reverse(value:String)
