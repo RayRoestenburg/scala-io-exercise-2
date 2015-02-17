@@ -1,7 +1,7 @@
 Exercise 2
 ==========
 
-In this exercise we continue with the end result of [exercise 1](http://github/RayRoestenburg/scala-io-exercise-1).
+In this exercise we continue with the end result of [exercise 1](http://github.com/RayRoestenburg/scala-io-exercise-1).
 
 In the previous exercise we ended up with a **Receptionist** that creates a child **ReverseActor** to do the actual work (String reversal). The **ReceptionistSpec** is more of an integration test than a unit test right now. Both the **Receptionist** and the **ReverseActor** are tested at once.
 
